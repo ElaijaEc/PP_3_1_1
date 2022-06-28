@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Users</title>
+  <style>
+    table {
+      border-collapse: collapse;
+    }
+    th, td {
+      border: black solid 1px;
+    }
+  </style>
+</head>
+<body>
+<h1>All User List</h1>
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Last Name</th>
+    <th>Age</th>
+    <th>Options</th>
+  </tr>
+  <th:block th:each="user:${users}">
+    <tr>
+      <td th:text="${user.getId}"></td>
+      <td th:text="${user.getFirstName()}"></td>
+      <td th:text="${user.getLastName()}"></td>
+      <td th:text="${user.getAge()}"></td>
+
+      <td>
+        <p><a th:href="'/redact?id=' + ${user.getId()}">Redact</a></p>
+        <p><a th:href="'/delete?id=' + ${user.getId()}">Delete</a></p>
+      </td>
+    </tr>
+  </th:block>
+</table>
+<h1>User Creation</h1>
+<form method="get" action="/add" th:object="${newuser}">
+  <table>
+    <tr>
+      <td>Name</td>
+      <td><label>
+        <input type="text" name="name" th:field="*{firstName}">
+      </label></td>
+
+      <td>Last Name</td>
+      <td><label>
+        <input type="text" name="lastname" th:field="*{lastName}">
+      </label></td>
+    </tr>
+    <tr>
+      <td>Age</td>
+      <td><label>
+        <input type="number" name="Age" th:field="*{age}">
+      </label></td>
+    </tr>
+  </table>
+  <input type="submit">
+</form>
+</body>
+</html>

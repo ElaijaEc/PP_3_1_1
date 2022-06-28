@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Redact</title>
+</head>
+<body>
+<h1>User Redaction</h1>
+<form method="get" action="/do_redaction" th:object="${user}">
+    <input type="hidden" name="id" th:field="*{id}" >
+    <table>
+        <tr>
+            <td>First Name</td>
+            <td><input type="text" name="name" th:field="*{firstName}" ></td>
+        </tr>
+        <tr>
+            <td>Last Name</td>
+            <td><input type="text" name="lastname" th:field="*{lastName}"></td>
+        </tr>
+        <tr>
+            <td>Age</td>
+            <td><input type="number" name="age" th:field="*{age}" ></td>
+        </tr>
+    </table>
+    <input type="submit">
+</form>
+<h1><a href="/">Back</a></h1>
+</body>
+</html>
